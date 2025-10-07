@@ -1,10 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+ import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+
 import NavBar from "./components/NavBar.tsx";
 import Footer from "./components/Footer.tsx";
 import Pluricast from "./pages/Pluricast";
+import ImageCarousel from './components/ImageCarousel';
 
-import BackgroundImage1 from "./assets/images/teste.png";
-import BackgroundImage2 from "./assets/images/image.jpg";
+import BackgroundImage1 from "./assets/images/image.jpg";
+import BackgroundImage2 from "./assets/images/Fundo02.jpg";
+
+import CarouselImage1 from "./assets/images/Fundo01.jpg";
+import CarouselImage2 from "./assets/images/image3.jpg";
+import CarouselImage3 from "./assets/images/Carrossel3.jpg";
+import CarouselImage4 from "./assets/images/Carrossel4.jpg";
+import CarouselImage5 from "./assets/images/Carrossel5.jpg";
+import CarouselImage6 from "./assets/images/Carrossel6.jpg";
+
+import Logo from "./assets/images/Logo.jpg";
+
+import RoundedImageTextBlock from "./components/RoundedImageTextBlock";
 
 const projectDescription = `
   Este projeto tem como objetivo valorizar os saberes indígenas por meio de ações educacionais,
@@ -13,17 +27,24 @@ const projectDescription = `
 `;
 
 export default function App() {
+  const navbarRef = useRef<HTMLElement>(null);
+  const [navbarHeight, setNavbarHeight] = useState(0);
+
+  useEffect(() => {
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
-      <NavBar />
-
-      <main className="min-h-[80vh]">
+      <NavBar ref={navbarRef} />
+      <main style={{ paddingTop: navbarHeight }} className="min-h-[80vh]">
 
         <Routes>
           <Route path="/Pluricast" element={<Pluricast />} />
         </Routes>
 
-        {/* Seção de boas-vindas */}
         <section
           className="w-full min-h-screen bg-center bg-cover flex items-center justify-center"
           style={{ backgroundImage: `url(${BackgroundImage1})` }}
@@ -44,21 +65,47 @@ export default function App() {
           </div>
         </section>
 
-        {/* Seção "Quem Somos" */}
+        <div className="pt-[20px]">
+          <ImageCarousel images={[CarouselImage1, CarouselImage2, CarouselImage3, CarouselImage4, CarouselImage5, CarouselImage6]} />
+        </div>
+
         <section className="bg-white py-12">
           <h2 className="text-3xl font-semibold text-center text-black mb-8">
-            Quem Somos?
+            Projetos
           </h2>
           <div className="w-full h-screen flex items-center justify-center bg-red-base">
-            <div className="bg-black/90 backdrop-blur-md rounded-full p-8 max-w-xl shadow-lg">
-              <p className="text-base text-white text-justify font-pompano">
-                {projectDescription}
-              </p>
-            </div>
+            <section className="bg-white py-16 rounded-3xl">
+              <div className="max-w-6xl mx-auto px-4 py-16">
+                <RoundedImageTextBlock
+                  title="Games"
+                  imgSrc={Logo}
+                  alt="Game"
+                >
+                  O projeto apresenta um jogo digital interativo 
+                  voltado à valorização das culturas indígenas brasileiras. 
+                  Pensado como uma ferramenta lúdica e educativa, 
+                  o jogo convida o jogador a percorrer territórios 
+                  inspirados em diferentes povos originários, explorando seus costumes, línguas, mitos, rituais e modos de vida. 
+                  Cada fase do jogo representa um bioma e um povo específico, estimulando a curiosidade, o respeito e o conhecimento 
+                  sobre os saberes ancestrais.
+                </RoundedImageTextBlock>
+              </div>
+              <div className="max-w-6xl mx-auto px-4 py-16">
+                <RoundedImageTextBlock
+                  title="Podcast"
+                  imgSrc={Logo}
+                  alt="PodCasts"
+                >
+                  TESTETESTESTESTSESETSETSETSETETSETSETSETSETS.
+                  TESTETESTESTESTSESETSETSETSETETSETSETSETSETS.
+                  TESTETESTESTESTSESETSETSETSETETSETSETSETSETS.
+                  TESTETESTESTESTSESETSETSETSETETSETSETSETSETS.
+                  TESTETESTESTESTSESETSETSETSETETSETSETSETSETS.
+                </RoundedImageTextBlock>
+              </div>
+            </section>
           </div>
         </section>
-
-        {/* Seção com imagem de fundo alternativa */}
         <section
           className="w-full h-screen bg-center bg-cover flex items-center justify-center"
           style={{ backgroundImage: `url(${BackgroundImage2})` }}
