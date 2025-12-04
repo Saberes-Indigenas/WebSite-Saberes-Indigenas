@@ -16,20 +16,8 @@ const NavBar = forwardRef<HTMLElement>((_, ref) => {
         </Link>
 
         <nav className="hidden md:flex items-center ml-auto space-x-6 pr-5">
-          <Link to="/publicações">
-            <span className="text-xl font-bold">Pluricast</span>
-          </Link>
-          <Link to="/sobre">
-            <span className="text-xl font-bold">Sobre</span>
-          </Link>
           <Link to="/podcasts">
             <span className="text-xl font-bold">Podcasts</span>
-          </Link>
-          <Link to="/contato">
-            <span className="text-xl font-bold">Contato</span>
-          </Link>
-          <Link to="/quemSomos">
-            <span className="text-xl font-bold">Quem Somos</span>
           </Link>
           <Link to="/game">
             <span className="text-xl font-bold">Game</span>
@@ -40,6 +28,12 @@ const NavBar = forwardRef<HTMLElement>((_, ref) => {
           <Link to="/mapas">
             <span className="text-xl font-bold">Mapas</span>
           </Link>
+          <Link to="/sobre">
+            <span className="text-xl font-bold">Sobre</span>
+          </Link>
+          <Link to="/quemSomos">
+            <span className="text-xl font-bold">Quem Somos</span>
+          </Link>          
           <img src={Gov} alt="Gov" className="h-20 w-65 rounded-md" />
         </nav>
       </div>
